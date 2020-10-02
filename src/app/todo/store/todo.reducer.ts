@@ -27,6 +27,7 @@ const todoReducer = createReducer(
   on(TodoActions.loadAllFailure, (state, { error }) => ({ ...state, loading: false, error })),
   on(TodoActions.load, (state, { id }) => ({ ...state, loading: true, selectedId: id })),
   on(TodoActions.loadSuccess, (state, { todo }) => {
+    console.log(state);
     const todos = state.todos.some((t) => t.id === todo.id) ? state.todos.map((t) => (t.id === todo.id ? todo : t)) : [...state.todos, todo];
     return { ...state, loading: false, todos };
   }),

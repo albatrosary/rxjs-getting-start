@@ -13,11 +13,11 @@ export class TodoFormComponent {
   @Input() loading: boolean;
   @Output() create = new EventEmitter<Partial<Todo>>();
 
-  form = this.fb.group({
+  form = this.formBuilder.group({
     text: ['', Validators.required],
   });
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder) {}
 
   onSubmit() {
     const text: string = this.form.get('text').value;

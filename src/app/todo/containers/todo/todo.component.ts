@@ -9,24 +9,24 @@ import { TodoFacade } from '../../store/todo.facade';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TodoComponent implements OnInit {
-  loading$ = this.todoService.loading$;
-  todos$ = this.todoService.todos$;
+  loading$ = this.todoFacade.loading$;
+  todos$ = this.todoFacade.todos$;
 
-  constructor(private todoService: TodoFacade) {}
+  constructor(private todoFacade: TodoFacade) {}
   ngOnInit() {
-    this.todoService.loadAll();
+    this.todoFacade.loadAll();
   }
   create(todo: Partial<Todo>) {
     const date = new Date();
     todo.checked = false;
     todo.createdAt = Math.floor(date.getTime() / 1000);
     todo.updatedAt = Math.floor(date.getTime() / 1000);
-    this.todoService.create(todo);
+    this.todoFacade.create(todo);
   }
   update(todo: Todo) {
-    this.todoService.update(todo);
+    this.todoFacade.update(todo);
   }
   remove(id: number) {
-    this.todoService.remove(id);
+    this.todoFacade.remove(id);
   }
 }
